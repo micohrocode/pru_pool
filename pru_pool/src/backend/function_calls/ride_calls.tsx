@@ -1,6 +1,9 @@
 import rides from "../data/rides.json"
-import requests from "../data/requests.json"
+import rideRequest from '../data/requests'
 import users from "../data/users.json"
+
+
+
 
 function viewAllRides(){
     // show all available rides
@@ -15,7 +18,7 @@ function viewFilteredRides(xid: string){
     // returns iterable of all filtered ride's information
     // returns false if user's request.json preferences arent set up.
     try{
-        let user_pref = requests["requests"].find((requests)=> requests.user === xid)
+        let user_pref = rideRequest.find((requests)=> requests.user === xid)
         if (user_pref === undefined) {
             console.log("user ", xid, " does not have request information set up.")
             return false
@@ -34,8 +37,9 @@ function viewFilteredRides(xid: string){
     }
 }
 
-function switchToBinary(days : String[]) {
+function  switchToBinary(days : String[]) {
     let bin_days = 0
+    
     if (days.includes("Monday")) {
         bin_days += 16
     }
@@ -56,16 +60,20 @@ function switchToBinary(days : String[]) {
     
 }
 
+
+
 function uploadNewRequest(request_ride: any){
     // changes list of days to binary int and uploads a request object to requests.json
-    requests["requests"].push({"user": request_ride["user"],
+
+    rideRequest.push({"user": request_ride["user"],
                     "pickup": request_ride["pickup"],
                     "drop_off": request_ride["drop_off"],
                     "days": switchToBinary(request_ride["days"]),
                     "recurring": request_ride["recurring"],
                     "arrival_time": request_ride["arrival_time"]
                     })
-    return Promise
+    console.log(rideRequest)
+
 }
 
 export {
