@@ -3,6 +3,7 @@ import logo from './logo.svg';
 import './App.css';
 import "../src/backend/function_calls/user_calls"
 import { loginUser } from '../src/backend/function_calls/user_calls';
+import MapTest from './components/MapTest';
 
 function App() {
   loginUser("x000000","passwords");
