@@ -34,14 +34,45 @@ function viewFilteredRides(xid: string){
     }
 }
 
-function uploadNewRequest(request_ride: any){
-    // changes list of days to binary int and uploads a rides object to rides.json
+function switchToBinary(days : String[]) {
+    let bin_days = 0
+    if (days.includes("Monday")) {
+        bin_days += 16
+    }
+    if (days.includes("Tuesday")) {
+        bin_days += 8
+    }
+    if (days.includes("Wednesday")) {
+        bin_days += 4
+    }
+    if (days.includes("Thursday")) {
+        bin_days += 2
+    }
+    if (days.includes("Friday")) {
+        bin_days += 1
+    }
+    console.log("endianness: ", (bin_days >>> 0).toString(2), " actual number: ", bin_days)
+    return bin_days
+    
+}
 
+function uploadNewRequest(request_ride: any){
+    // changes list of days to binary int and uploads a request object to requests.json
+    requests["requests"].push({"user": request_ride["user"],
+                    "pickup": request_ride["pickup"],
+                    "drop_off": request_ride["drop_off"],
+                    "days": switchToBinary(request_ride["days"]),
+                    "recurring": request_ride["recurring"],
+                    "arrival_time": request_ride["arrival_time"]
+                    })
+    return Promise
 }
 
 export {
     viewAllRides,
-    viewFilteredRides
+    viewFilteredRides,
+    uploadNewRequest,
+    switchToBinary
 }
 
 
