@@ -34,6 +34,11 @@ function viewFilteredRides(xid: string){
     }
 }
 
+function uploadNewRequest(request_ride: any){
+    // changes list of days to binary int and uploads a rides object to rides.json
+
+}
+
 export {
     viewAllRides,
     viewFilteredRides
