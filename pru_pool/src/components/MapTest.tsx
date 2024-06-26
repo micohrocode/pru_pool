@@ -46,6 +46,7 @@ function Directions(){
         directionsService?.route({
             origin: "600 Sloan Ave, Hamilton Township, NJ 08619",
             destination: "213 Washington St #2917, Newark, NJ 07102",
+            waypoints: [{location: "French St &, Albany St, New Brunswick, NJ 08901"}],
             travelMode: google.maps.TravelMode.DRIVING,
             provideRouteAlternatives: true,
         }).then(response =>{
@@ -57,11 +58,17 @@ function Directions(){
     if (!leg) return null;
 
     return (
-        <div className='directions'>
+        <div className='directions' style={{color:"black"}}>
             <h2>{selected.summary}</h2>
-            <p>{leg.start_address} to {leg.end_address}</p>
-            <p>Distance: {leg.distance?.text}</p>
-            <p>Duration: {leg.duration?.text}</p>
+            {selected?.legs.map(function(data,index){
+                return(
+                    <div>
+                        <p>{data.start_address} to {data.end_address}</p>
+                        <p>Distance: {data.distance?.text}</p>
+                        <p>Duration: {data.duration?.text}</p>
+                    </div>
+                )
+            })}
         </div>
     )
 }
