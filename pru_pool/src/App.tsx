@@ -6,12 +6,12 @@ import Home from './pages/home';
 import "../src/backend/function_calls/user_calls"
 import "../src/backend/function_calls/ride_calls"
 import { loginUser } from '../src/backend/function_calls/user_calls';
-import MapTest from './components/MapTest';
-import { viewAllRides } from '../src/backend/function_calls/ride_calls';
+import { viewAllRides, viewFilteredRides } from '../src/backend/function_calls/ride_calls';
 
 function App() {
   loginUser("x000000","passwords");
-  let all_noncapacity_rides = viewAllRides();
+  let all_noncapacity_rides = viewFilteredRides("x000000");
+  console.log(all_noncapacity_rides)
 
 
   return (
