@@ -7,7 +7,7 @@ import "../src/backend/function_calls/user_calls"
 import "../src/backend/function_calls/ride_calls"
 import { loginUser } from '../src/backend/function_calls/user_calls';
 import RequestForm from './components/RequestForm';
-import Map from './pages/findride';
+import Map from './pages/fineride';
 import { viewAllRides, viewFilteredRides } from '../src/backend/function_calls/ride_calls';
 
 function App() {
