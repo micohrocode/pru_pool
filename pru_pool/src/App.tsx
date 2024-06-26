@@ -1,8 +1,12 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
+import "../src/backend/function_calls/user_calls"
+import { loginUser } from '../src/backend/function_calls/user_calls';
 
 function App() {
+  loginUser("x000000","passwords");
+
   return (
     <div className="App">
       <header className="App-header">
