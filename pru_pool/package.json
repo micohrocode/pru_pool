@@ -10,6 +10,7 @@
     "@types/node": "^16.18.101",
     "@types/react": "^18.3.3",
     "@types/react-dom": "^18.3.0",
+    "@vis.gl/react-google-maps": "^1.1.0",
     "autoprefixer": "^10.4.19",
     "css": "^3.0.0",
     "post": "^0.0.1",
