@@ -1,24 +1,26 @@
 // import { useState } from "react";
 import { loginUser } from "../backend/function_calls/user_calls";
-import { Navigate } from 'react-router-dom';
+import { Navigate, useNavigate } from 'react-router-dom';
+import { useState } from "react";
+import currentUser from "../backend/data/currentUser.json"
 
 const Login : React.FC = () => {
-    // useEffect(() => {
-    //     document.title = "PruPool Login";
-    // }, []);
+    const [id,setId] = useState("");
+    const [password,setPassword] = useState("");
+    const navigate = useNavigate();
 
     
 
-    const submitInfo = () => {
-        const xid = document.getElementById('user_id') as HTMLInputElement;
-        const password = document.getElementById('user_password') as HTMLInputElement;
+    const submitInfo = (event: { preventDefault: () => void; }) => {
+        event.preventDefault()
+
+        console.log(id)
+        console.log(password)
         
-        // console.log("User: " + xid.value);
-        // console.log("Password: " + password.value);
-        
-        // if (loginUser(xid.value, password.value) === xid.value) {
-        return <Navigate to="/home" />
-        // }
+        if (loginUser(id, password) !== false) {
+            currentUser["currentUser"] = id;
+            navigate("/home")
+        }
     }
 
     return (
@@ -33,6 +35,7 @@ const Login : React.FC = () => {
                             type="text"
                             id="user_id"
                             placeholder="Enter your XID"
+                            onChange={(e)=>setId(e.target.value)}
                             required
                         />
                     </div>
@@ -43,6 +46,7 @@ const Login : React.FC = () => {
                             type="password"
                             id="user_password"
                             placeholder="Enter your password"
+                            onChange={(e)=>setPassword(e.target.value)}
                             required
                         />
                     </div>
