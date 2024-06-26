@@ -2,7 +2,9 @@ import rides from "../data/rides.json"
 
 function viewAllRides(){
     // show all available rides
-    return null;
+    //No null check, assume json file will always be populated
+    let all_rides = rides["rides"].filter((user)=> user.passengers.length < user.car_capacity)
+    return all_rides;
 }
 
 function viewFilteredRides(filters : object){
@@ -13,3 +15,9 @@ export {
     viewAllRides,
     viewFilteredRides
 }
+
+
+
+
+
+
