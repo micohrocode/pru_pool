@@ -19,11 +19,7 @@ function viewFilteredRides(xid: string){
         if (user_pref === undefined) {
             console.log("user ", xid, " does not have request information set up.")
             return false
-        }
-        if (user_pref === undefined) {
-            console.log("user preferences are undefined for ", xid)
-            return false
-        } else{
+        }else{
             let days = user_pref.days
             let dropoff = user_pref.drop_off
             let filtered_rides = rides["rides"].filter((user)=> (user.days & days) > 0 && user.passengers.length < user.car_capacity && dropoff === user.drop_off)

@@ -7,6 +7,7 @@ import "../src/backend/function_calls/user_calls"
 import "../src/backend/function_calls/ride_calls"
 import { loginUser } from '../src/backend/function_calls/user_calls';
 import { viewAllRides, viewFilteredRides } from '../src/backend/function_calls/ride_calls';
+import { MapTest } from './components/MapTest';
 
 function App() {
   loginUser("x000000","passwords");
@@ -17,10 +18,24 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-      <Routes>
+      {/* <Routes>
          <Route path='/' element={<Login/>} />
          <Route path='home' element={<Home/>}/>
-       </Routes>
+       </Routes> */}
+       <MapTest props={{
+            "user":"x111111",
+            "start_point":"72 S Clinton Ave, Trenton, NJ 08609",
+            "drop_off":"213 Washington St #2917, Newark, NJ 07102",
+            "days":3,
+            "recurring":true,
+            "car_capacity": 4,
+            "start_time":"7:00am",
+            "arrival_time":"8:45am",
+            "car_model":"Tesla Model 3",
+            "contact_number":"111-111-1111",
+            "current_stops":["72 S Clinton Ave, Trenton, NJ 08609","French St &, Albany St, New Brunswick, NJ 08901","213 Washington St #2917, Newark, NJ 07102"],
+            "passengers":[]
+        }}/>
       </header>
     </div>
   );
