@@ -29,7 +29,7 @@ interface MapProps {
 export const MapTest: FunctionComponent<PropsWithChildren<MapProps>> = ({props}) =>{
     let position = {lat: 40.73804874224541, lng: -74.17431798728744}
 
-    return <div style={{height:"100vh",width:"100%"}}>
+    return <div style={{height:"100vh",width:"100%"}} className='flex flex-row'>
         <APIProvider apiKey='AIzaSyDEzb-XFMO4Vh0obCfpV76PIiHiqk7i39Y'>
             <Map 
             center={position} 
