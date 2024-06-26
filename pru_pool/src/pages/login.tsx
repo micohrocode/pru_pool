@@ -1,28 +1,31 @@
 // import { useState } from "react";
 import { loginUser } from "../backend/function_calls/user_calls";
+import { Navigate } from 'react-router-dom';
 
 const Login : React.FC = () => {
     // useEffect(() => {
     //     document.title = "PruPool Login";
     // }, []);
-    const button = document.getElementById('submitButton');
 
-    button?.addEventListener('click', (event) => {
-        event.preventDefault();
+    
+
+    const submitInfo = () => {
         const xid = document.getElementById('user_id') as HTMLInputElement;
         const password = document.getElementById('user_password') as HTMLInputElement;
         
-        console.log("User: " + xid.value);
-        console.log("Password: " + password.value);
-
-        console.log(loginUser(xid.value, password.value));
-    });
+        // console.log("User: " + xid.value);
+        // console.log("Password: " + password.value);
+        
+        // if (loginUser(xid.value, password.value) === xid.value) {
+        return <Navigate to="/home" />
+        // }
+    }
 
     return (
         <div className="flex justify-center w-screen items-center h-screen bg-gradient-to-l from-[#42a7f0] to-[#004d99]">
             <div className="max-w-md w-screen bg-[#ebebeb] p-8 rounded-lg shadow-lg">
                 <h2 className="text-2xl font-bold mb-6 text-center text-[#1a1d1e]">Login</h2>
-                <form className="space-y-4" id="login_form">
+                <form className="space-y-4" id="login_form" onSubmit={submitInfo}>
                     <div>
                         <label className="block text-md font-semibold text-gray-600">XID</label>
                         <input
@@ -47,7 +50,6 @@ const Login : React.FC = () => {
                         <button
                             className="w-full py-2 px-4 bg-[#002b5a] text-white font-semibold rounded-lg hover:bg-blue-600 focus:outline-none focus:bg-blue-600"
                             type="submit"
-                            id="submitButton"
                         >
                             Sign In
                         </button>
