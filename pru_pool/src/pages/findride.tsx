@@ -24,12 +24,25 @@ const Map: React.FC = () => {
                 ))}
             </div>
             <div className="w-2/3 bg-gray-300">
-                <div className="h-full bg-white p-4">
-                    {/* <MapTest 
+                <div className="h-full bg-white p-4 pb-20 max-h-full">
+                    <MapTest 
                         props={
-                            
+                            {
+                                "user":"x111111",
+                                "start_point":"72 S Clinton Ave, Trenton, NJ 08609",
+                                "drop_off":"213 Washington St #2917, Newark, NJ 07102",
+                                "days":3,
+                                "recurring":true,
+                                "car_capacity": 4,
+                                "start_time":"7:00am",
+                                "arrival_time":"8:45am",
+                                "car_model":"Tesla Model 3",
+                                "contact_number":"111-111-1111",
+                                "current_stops":["72 S Clinton Ave, Trenton, NJ 08609","213 Washington St #2917, Newark, NJ 07102"],
+                                "passengers":[]
+                            }
                         }
-                    /> */}
+                    />
                 </div>
             </div>
         </div>

@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import Select from 'react-select';
-
+import currentUser from "../backend/data/currentUser.json"
+import {uploadNewRequest, viewFilteredRides} from "../backend/function_calls/ride_calls"
+import { useNavigate } from 'react-router-dom';
 const RideForm: React.FC = () => {
   const [pickup, setPickup] = useState('');
   const [dropOff, setDropOff] = useState<{ label: string; value: string } | null>(null);
@@ -8,6 +10,9 @@ const RideForm: React.FC = () => {
   const [recurring, setRecurring] = useState(false);
   const [arrivalTime, setArrivalTime] = useState('');
 
+  const navigate = useNavigate();
+
+  navigate('/request');
   const dropOffLocations = [
     { label: 'Scottsdale, AZ - 16260 N 71st St, Scottsdale, AZ 85254', value: 'Scottsdale, AZ - 16260 N 71st St, Scottsdale, AZ 85254' },
     { label: 'San Francisco, CA - 101 California St, San Francisco, CA 94111', value: 'San Francisco, CA - 101 California St, San Francisco, CA 94111' },
@@ -45,13 +50,16 @@ const RideForm: React.FC = () => {
   const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault();
     const formData = {
+      user: currentUser['currentUser'],
       pickup,
       drop_off: dropOff?.value || '',
       days,
       recurring,
       arrival_time: arrivalTime,
     };
-    console.log(JSON.stringify(formData, null, 2));
+    uploadNewRequest(formData);
+    navigate('/map');
+
   };
 
   return (
