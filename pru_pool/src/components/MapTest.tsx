@@ -1,6 +1,6 @@
 "use client"
 
-import {useEffect, useState} from 'react';
+import {useEffect, useState, FunctionComponent, PropsWithChildren} from 'react';
 import {
     APIProvider,
     Map,
@@ -8,7 +8,25 @@ import {
     useMap,
 } from "@vis.gl/react-google-maps";
 
-export default function MapTest(){
+interface MapProps {
+    props: {
+            "user": string,
+            "start_point": string, 
+            "drop_off": string,
+            "days":number,
+            "recurring":boolean,
+            "car_capacity": number,
+            "start_time":string,
+            "arrival_time":string,
+            "car_model":string,
+            "contact_number":string,
+            "current_stops":string[],
+            "passengers":string[]
+    }
+}
+
+
+export const MapTest: FunctionComponent<PropsWithChildren<MapProps>> = ({props}) =>{
     let position = {lat: 40.73804874224541, lng: -74.17431798728744}
 
     return <div style={{height:"100vh",width:"100%"}}>
@@ -18,13 +36,13 @@ export default function MapTest(){
             zoom={9}
             fullscreenControl={false}
             >
-                <Directions/>
+                <Directions props={props}/>
             </Map>
         </APIProvider>
     </div>
 }
 
-function Directions(){
+const Directions: FunctionComponent<PropsWithChildren<MapProps>> = ({props}) =>{
     const map = useMap();
     const routesLibrary = useMapsLibrary("routes");
     const [directionsService, setDirectionsService] = useState<google.maps.DirectionsService>();
@@ -34,6 +52,7 @@ function Directions(){
     const selected = routes ? routes[routeIndex] : null;
     const leg = selected?.legs[0];
 
+    console.log(props)
 
     useEffect(()=>{
         if(!routesLibrary || !map) return;
@@ -44,9 +63,9 @@ function Directions(){
     useEffect(()=>{
         if(!directionsRenderer || !directionsRenderer) return;
         directionsService?.route({
-            origin: "600 Sloan Ave, Hamilton Township, NJ 08619",
-            destination: "213 Washington St #2917, Newark, NJ 07102",
-            waypoints: [{location: "French St &, Albany St, New Brunswick, NJ 08901"}],
+            origin: props["start_point"],
+            destination: props["drop_off"],
+            waypoints: props["current_stops"].slice(1,-1).map(x => ({location:x})),
             travelMode: google.maps.TravelMode.DRIVING,
             provideRouteAlternatives: true,
         }).then(response =>{
