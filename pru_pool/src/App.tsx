@@ -8,6 +8,8 @@ import "../src/backend/function_calls/ride_calls"
 import { loginUser } from '../src/backend/function_calls/user_calls';
 import MapTest from './components/MapTest';
 import { viewAllRides } from '../src/backend/function_calls/ride_calls';
+import RequestForm from './components/RequestForm';
+import Map from './pages/findride';
 
 function App() {
   loginUser("x000000","passwords");
@@ -20,6 +22,8 @@ function App() {
       <Routes>
          <Route path='/' element={<Login/>} />
          <Route path='home' element={<Home/>}/>
+         <Route path='request' element={<RequestForm />}/>
+         <Route path='map' element={<Map />} />
        </Routes>
       </header>
     </div>
