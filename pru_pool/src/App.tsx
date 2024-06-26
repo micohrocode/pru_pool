@@ -6,6 +6,7 @@ import Home from './pages/home';
 import "../src/backend/function_calls/user_calls"
 import "../src/backend/function_calls/ride_calls"
 import { loginUser } from '../src/backend/function_calls/user_calls';
+import MapTest from './components/MapTest';
 import { viewAllRides } from '../src/backend/function_calls/ride_calls';
 
 function App() {
