@@ -6,9 +6,10 @@ import currentUser from "../backend/data/currentUser.json"
 
 const Map: React.FC = () => {
     console.log("------------------------------------------")
-    console.log(currentUser)
-    let rides = viewFilteredRides("x000000") as Array<any>;
-    console.log(rides[0])
+    const jsonData = localStorage.getItem("currentUser");
+    console.log(jsonData ? jsonData.toString() : null)
+    let rides = viewFilteredRides(jsonData ? jsonData.toString() : "") as Array<any>;
+    
 
     return (
         <div className="flex flex-wrap w-screen">

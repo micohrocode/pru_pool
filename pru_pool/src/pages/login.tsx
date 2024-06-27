@@ -18,6 +18,7 @@ const Login : React.FC = () => {
         console.log(password)
         
         if (loginUser(id, password) !== false) {
+            localStorage.setItem("currentUser", id);
             currentUser["currentUser"] = id;
             navigate("/home")
         }

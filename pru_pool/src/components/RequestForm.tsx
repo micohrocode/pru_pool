@@ -12,7 +12,6 @@ const RideForm: React.FC = () => {
 
   const navigate = useNavigate();
 
-  navigate('/request');
   const dropOffLocations = [
     { label: 'Scottsdale, AZ - 16260 N 71st St, Scottsdale, AZ 85254', value: 'Scottsdale, AZ - 16260 N 71st St, Scottsdale, AZ 85254' },
     { label: 'San Francisco, CA - 101 California St, San Francisco, CA 94111', value: 'San Francisco, CA - 101 California St, San Francisco, CA 94111' },
