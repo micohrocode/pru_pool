@@ -21,13 +21,13 @@ function viewFilteredRides(xid: string){
         let user_pref = rideRequest.find((requests)=> requests.user === xid)
         if (user_pref === undefined) {
             console.log("user ", xid, " does not have request information set up.")
-            return false
+            return []
         }else{
             let days = user_pref.days
             let dropoff = user_pref.drop_off
             let filtered_rides = rides["rides"].filter((user)=> (user.days & days) > 0 && user.passengers.length < user.car_capacity && dropoff === user.drop_off)
             if (filtered_rides.length === 0){
-                return false
+                return []
             }
             return filtered_rides;
         }
@@ -60,6 +60,27 @@ function  switchToBinary(days : String[]) {
     
 }
 
+function switchToDay(bin_days: number): string[] {
+    let days: string[] = [];
+
+    if (bin_days & 16) {
+        days.push(" Monday");
+    }
+    if (bin_days & 8) {
+        days.push(" Tuesday");
+    }
+    if (bin_days & 4) {
+        days.push(" Wednesday");
+    }
+    if (bin_days & 2) {
+        days.push(" Thursday");
+    }
+    if (bin_days & 1) {
+        days.push(" Friday");
+    }
+
+    return days;
+}
 
 
 function uploadNewRequest(request_ride: any){
@@ -80,7 +101,8 @@ export {
     viewAllRides,
     viewFilteredRides,
     uploadNewRequest,
-    switchToBinary
+    switchToBinary,
+    switchToDay
 }
 
 
