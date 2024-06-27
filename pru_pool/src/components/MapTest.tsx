@@ -33,7 +33,7 @@ export const MapTest: FunctionComponent<PropsWithChildren<MapProps>> = ({props})
         <APIProvider apiKey='AIzaSyDEzb-XFMO4Vh0obCfpV76PIiHiqk7i39Y'>
             <Map 
             center={position} 
-            zoom={9}
+            zoom={8}
             fullscreenControl={false}
             >
             
