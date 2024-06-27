@@ -7,6 +7,7 @@ import {
     useMapsLibrary,
     useMap,
 } from "@vis.gl/react-google-maps";
+import { switchToDay } from '../backend/function_calls/ride_calls';
 
 interface MapProps {
     props: {
@@ -92,6 +93,7 @@ const Directions: FunctionComponent<PropsWithChildren<MapProps>> = ({props}) =>{
                         <p>{data.start_address} to {data.end_address}</p>
                         <p>Distance: {data.distance?.text}</p>
                         <p>Duration: {data.duration?.text}</p>
+                        <p>Available Days: {switchToDay(props.days)}</p>
                         <p>Contact Info: {props.contact_number}</p>
                         <p>Car Model: {props.car_model}</p>
                         <p>Car Capacity: {props.car_capacity}</p>
