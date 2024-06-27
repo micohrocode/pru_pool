@@ -36,7 +36,8 @@ export const MapTest: FunctionComponent<PropsWithChildren<MapProps>> = ({props})
             zoom={9}
             fullscreenControl={false}
             >
-                <Directions props={props}/>
+            
+            <Directions props={props}/>
             </Map>
         </APIProvider>
     </div>
@@ -51,6 +52,8 @@ const Directions: FunctionComponent<PropsWithChildren<MapProps>> = ({props}) =>{
     const [routeIndex, setRouteIndex] = useState(0);
     const selected = routes ? routes[routeIndex] : null;
     const leg = selected?.legs[0];
+
+    const [show,setShow] = useState(false);
 
     console.log(props)
 
@@ -78,16 +81,26 @@ const Directions: FunctionComponent<PropsWithChildren<MapProps>> = ({props}) =>{
 
     return (
         <div className='directions' style={{color:"black"}}>
-            <h2>{selected.summary}</h2>
+            <button className="w-full py-2 px-4 bg-[#002b5a] text-white font-semibold rounded-lg hover:bg-blue-600 focus:outline-none focus:bg-blue-600" onClick={()=>{setShow(!show)}}>Show Info</button>
+            <div style={{position:"absolute",top:"0",backgroundColor:"white"}}>
             {selected?.legs.map(function(data,index){
                 return(
-                    <div>
+                    <>
+
+                    {show ? <div style={{fontSize:"12px"}}>
+                        <h2>{selected.summary}</h2>
                         <p>{data.start_address} to {data.end_address}</p>
                         <p>Distance: {data.distance?.text}</p>
                         <p>Duration: {data.duration?.text}</p>
-                    </div>
+                        <p>Contact Info: {props.contact_number}</p>
+                        <p>Car Model: {props.car_model}</p>
+                        <p>Car Capacity: {props.car_capacity}</p>
+                    </div> : null}
+                    </>
+                    
                 )
             })}
+            </div>
         </div>
     )
 }

@@ -14,7 +14,7 @@ const Map: React.FC = () => {
     return (
         <div className="flex flex-wrap w-screen">
             {rides?.map((ride, index) => (
-                <div key={index} className="flex flex-col m-4" style={{ width: "calc(33.333% - 2rem)" }}>
+                <div key={index} className="flex flex-col m-4" style={{ width: "calc(33.333% - 2rem)", height:"80vh" }}>
                     <CarRoute startLocation={ride.start_point} endLocation={ride.drop_off} arrivalTime={ride.arrival_time} />
                     <MapTest props={ride} />
                 </div>
