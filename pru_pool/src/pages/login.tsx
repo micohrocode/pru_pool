@@ -3,6 +3,7 @@ import { loginUser } from "../backend/function_calls/user_calls";
 import { Navigate, useNavigate } from 'react-router-dom';
 import { useState } from "react";
 import currentUser from "../backend/data/currentUser.json"
+import logo from '../assets/1.png';
 
 const Login : React.FC = () => {
     const [id,setId] = useState("");
@@ -27,7 +28,8 @@ const Login : React.FC = () => {
     return (
         <div className="flex justify-center w-screen items-center h-screen bg-gradient-to-l from-[#42a7f0] to-[#004d99]">
             <div className="max-w-md w-screen bg-[#ebebeb] p-8 rounded-lg shadow-lg">
-                <h2 className="text-2xl font-bold mb-6 text-center text-[#1a1d1e]">Login</h2>
+                <img src={logo} alt="Logo" className="w-full" />
+                <h2 className="text-3xl font-bold mt-7 mb-6 text-center text-[#1a1d1e]">Login</h2>
                 <form className="space-y-4" id="login_form" onSubmit={submitInfo}>
                     <div>
                         <label className="block text-md font-semibold text-gray-600">XID</label>
